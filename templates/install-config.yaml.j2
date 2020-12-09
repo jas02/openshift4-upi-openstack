@@ -31,15 +31,12 @@ networking:
 platform:
   openstack:
     cloud: {{ openstack_cloud_name }}
-    computeFlavor: {{ nodes_flavor }}
     externalDNS: {{ os_dns_servers }}
     externalNetwork: {{ external_network }}
-    lbFloatingIP: {{ openshift_api_fip | default(openshift_api_vip) }}
-
     apiVIP: {{ openshift_api_fip | default(openshift_api_vip) }}
+    ingressVIP: {{ openshift_ingress_fip | default(openshift_ingress_vip) }}
     defaultMachinePlatform:
       type: {{ nodes_flavor }}
-    ingressVIP: {{ openshift_ingress_fip | default(openshift_ingress_vip) }}
 publish: External
 pullSecret: '{{ openshift_pull_secret }}'
 sshKey: |
